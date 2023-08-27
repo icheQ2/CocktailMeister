@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Map;
 
 public class Receipt {
@@ -5,12 +6,14 @@ public class Receipt {
     private Map<Component, Double> ingredients;
     private double price;
     private double volume;
+    private List<PreparationMethods> preparationMethods;
 
-    public Receipt(String name, Map<Component, Double> ingredients, double price, double volume) {
+    public Receipt(String name, Map<Component, Double> ingredients, double price, double volume, List<PreparationMethods> preparationMethods) {
         this.name = name;
         this.ingredients = ingredients;
         this.price = price;
         this.volume = volume;
+        this.preparationMethods = preparationMethods;
     }
 
     public String getName() {
