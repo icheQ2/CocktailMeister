@@ -1,3 +1,7 @@
+package app.cocktails;
+
+import app.components.Component;
+
 import java.util.List;
 import java.util.Map;
 
@@ -6,9 +10,9 @@ public class Receipt {
     private Map<Component, Double> ingredients;
     private double price;
     private double volume;
-    private List<PreparationMethods> preparationMethods;
+    private List<PreparationMethod> preparationMethods;
 
-    public Receipt(String name, Map<Component, Double> ingredients, double price, double volume, List<PreparationMethods> preparationMethods) {
+    public Receipt(String name, Map<Component, Double> ingredients, double price, double volume, List<PreparationMethod> preparationMethods) {
         this.name = name;
         this.ingredients = ingredients;
         this.price = price;

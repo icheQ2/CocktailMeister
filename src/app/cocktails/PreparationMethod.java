@@ -1,4 +1,6 @@
-public enum PreparationMethods {
+package app.cocktails;
+
+public enum PreparationMethod {
     SHAKE("шейк"),
     BUILD("билд"),
     STIR("стир"),
@@ -9,7 +11,7 @@ public enum PreparationMethods {
 
     private final String method;
 
-    PreparationMethods(String method) {
+    PreparationMethod(String method) {
         this.method = method;
     }
 

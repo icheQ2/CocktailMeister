@@ -1,12 +1,14 @@
+package app.components;
+
 public class Component {
     private String name;
     private String brand;
-    private ComponentTypes type;
+    private ComponentType type;
     private double costPerUnit;
     private double currentVolume;
     private String comment;
 
-    public Component(String name, String brand, ComponentTypes type, double costPerUnit, double currentVolume, String comment) {
+    public Component(String name, String brand, ComponentType type, double costPerUnit, double currentVolume, String comment) {
         this.name = name;
         this.brand = brand;
         this.type = type;

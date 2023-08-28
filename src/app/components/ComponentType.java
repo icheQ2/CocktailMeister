@@ -1,4 +1,6 @@
-public enum ComponentTypes {
+package app.components;
+
+public enum ComponentType {
     GIN("джин"),
     RUM("ром"),
     WHISKEY("виски"),
@@ -15,7 +17,7 @@ public enum ComponentTypes {
 
     private final String type;
 
-    ComponentTypes(String type) {
+    ComponentType(String type) {
         this.type = type;
     }
 

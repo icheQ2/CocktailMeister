@@ -1,3 +1,7 @@
+package app.shelf;
+
+import app.components.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 

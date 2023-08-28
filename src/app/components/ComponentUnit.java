@@ -1,4 +1,6 @@
-public enum ComponentUnits {
+package app.components;
+
+public enum ComponentUnit {
     ML("мл"),
     GR("гр"),
     OZ("унц"),
@@ -7,7 +9,7 @@ public enum ComponentUnits {
 
     private final String unit;
 
-    ComponentUnits(String unit) {
+    ComponentUnit(String unit) {
         this.unit = unit;
     }
 
