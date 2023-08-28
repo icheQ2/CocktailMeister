@@ -5,12 +5,15 @@ import java.io.IOException;
 public class Bar {
     public static void main(String[] args) {
 
+        UserBar userBar = new UserBar("Dima", 123L);
+
+
         Operation operation = null;
 
         do {
             try {
                 operation = askOperation();
-                CommandExecutor.execute(operation);
+                CommandExecutor.execute(operation, userBar);
             } catch (Exception e) {
                 ConsoleHelper.writeMessage("ПРОИЗОШЛА ОШИБКА:");
                 e.printStackTrace();

@@ -18,7 +18,7 @@ public class CommandExecutor {
         allKnownCommandsMap.put(Operation.APP_EXIT, new AppExitCommand());
     }
 
-    public static void execute(Operation operation) throws Exception {
-        allKnownCommandsMap.get(operation).execute();
+    public static void execute(Operation operation, UserBar userBar) throws Exception {
+        allKnownCommandsMap.get(operation).execute(userBar);
     }
 }
