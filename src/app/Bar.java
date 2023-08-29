@@ -13,7 +13,7 @@ public class Bar {
         do {
             try {
                 operation = askOperation();
-                CommandExecutor.execute(operation, userBar);
+                OperationExecutor.execute(operation, userBar);
             } catch (Exception e) {
                 ConsoleHelper.writeMessage("ПРОИЗОШЛА ОШИБКА:");
                 e.printStackTrace();
