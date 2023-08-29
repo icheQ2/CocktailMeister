@@ -78,7 +78,7 @@ public class Component {
     @Override
     public String toString() {
         String typeCap = type.getType().substring(0, 1).toUpperCase() + type.getType().substring(1);
-        String brandAndName = brand.equals(product) ? brand : brand + product;
+        String brandAndName = brand.equals(product) ? brand : brand + " " + product;
         return String.format("%s %s | %.0f %s | %.2f ₽/%s | %s",
                 typeCap, brandAndName, currentVolume, unit.getUnit(), costPerUnit, unit.getUnit(), comment);
     }

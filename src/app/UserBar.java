@@ -6,7 +6,8 @@ import app.components.ComponentUnit;
 import app.shelf.UserShelf;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
+import java.util.Map;
 
 public class UserBar {
     private String userName;
@@ -21,7 +22,7 @@ public class UserBar {
         shelf.addComponent(new Component("Barrister", "Sloe", ComponentType.GIN, ComponentUnit.ML, 2000 / 1000, 1000, "bb")); // УДАЛИТЬ
     }
     public void shelfOverview() {
-        List<Component> components = shelf.getComponents();
+        Collection<Component> components = shelf.getComponents().values();
         ConsoleHelper.writeMessage("");
         if (components.isEmpty()) {
             ConsoleHelper.writeMessage("Бар пользователя " + userName + " пустой(((");
@@ -36,23 +37,46 @@ public class UserBar {
         }
     }
 
-    public void shelfAdd() throws IOException { // Дописать сложение и выбор из существующих бутылок
-        String TEST = "TEST";
+    public void shelfAdd() throws IOException {
+        Map<String, Component> components = shelf.getComponents();
         ConsoleHelper.writeMessage("");
         ConsoleHelper.writeMessage("Введи бренд:");
         String brand = ConsoleHelper.readString();
         ConsoleHelper.writeMessage("Введи название продукта:");
         String name = ConsoleHelper.readString();
-        ConsoleHelper.writeMessage(String.format("Выбери тип (%s):", TEST)); // Заменить заглушку списком типов
-        ComponentType type = ComponentType.valueOf(ConsoleHelper.readString());
-        ConsoleHelper.writeMessage(String.format("Выбери единицы измерения (%s):", TEST)); // Заменить заглушку списком единиц
-        ComponentUnit unit = ComponentUnit.valueOf(ConsoleHelper.readString());
+        String key = brand + " " + name;
+        ComponentType type = null;
+        ComponentUnit unit = null;
+        if (!components.containsKey(key)) {
+            ConsoleHelper.writeMessage(String.format("Выбери тип (%s):", ComponentType.getValues()));
+            type = ComponentType.valueOf(ConsoleHelper.readString());
+            ConsoleHelper.writeMessage(String.format("Выбери единицы измерения (%s):", ComponentUnit.getValues()));
+            unit = ComponentUnit.valueOf(ConsoleHelper.readString());
+        }
         ConsoleHelper.writeMessage("Введи стоимость:");
         double cost = ConsoleHelper.readDouble();
         ConsoleHelper.writeMessage("Введи объём:");
         double volume = ConsoleHelper.readDouble();
-        ConsoleHelper.writeMessage("Введи примечание:");
-        String comment = ConsoleHelper.readString();
-        shelf.addComponent(new Component(name, brand, type, unit, cost / volume, volume, comment));
+        if (!components.containsKey(key)) {
+            ConsoleHelper.writeMessage("Введи примечание:");
+            String comment = ConsoleHelper.readString();
+            shelf.addComponent(new Component(name, brand, type, unit, cost / volume, volume, comment));
+            ConsoleHelper.writeMessage("");
+            ConsoleHelper.writeMessage("Поставили компонент на полку!");
+        } else {
+            Component component = components.get(key);
+            double oldCostPerUnit = component.getCostPerUnit();
+            if (oldCostPerUnit != cost / volume) {
+                ConsoleHelper.writeMessage(String.format("Обновить стоимость (%.2f ₽/%s - Y) или оставить прежней (%.2f ₽/%s - N)?",
+                        cost / volume, component.getUnit().getUnit(), oldCostPerUnit, component.getUnit().getUnit()));
+                String answer = ConsoleHelper.readString();
+                if (answer.equals("Y")) {
+                    component.setCostPerUnit(cost / volume);
+                }
+            }
+            component.setCurrentVolume(component.getCurrentVolume() + volume);
+            ConsoleHelper.writeMessage("");
+            ConsoleHelper.writeMessage("Дополнили компонент на полке!");
+        }
     }
 }

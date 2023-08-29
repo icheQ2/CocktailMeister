@@ -24,4 +24,12 @@ public enum ComponentType {
     public String getType() {
         return type;
     }
+
+    public static String getValues() {
+        String values = "";
+        for (ComponentType value : ComponentType.values()) {
+            values += ", " + value;
+        }
+        return values.substring(2);
+    }
 }

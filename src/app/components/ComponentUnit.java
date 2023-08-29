@@ -16,4 +16,12 @@ public enum ComponentUnit {
     public String getUnit() {
         return unit;
     }
+
+    public static String getValues() {
+        String values = "";
+        for (ComponentUnit value : ComponentUnit.values()) {
+            values += ", " + value;
+        }
+        return values.substring(2);
+    }
 }
