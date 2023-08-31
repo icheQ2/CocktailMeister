@@ -1,6 +1,6 @@
-package app.cocktails;
+package main.java.app.models;
 
-import app.components.Component;
+import main.java.app.enums.PreparationMethod;
 
 import java.util.List;
 import java.util.Map;

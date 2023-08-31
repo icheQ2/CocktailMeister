@@ -1,4 +1,4 @@
-package app.cocktails;
+package main.java.app.enums;
 
 public enum PreparationMethod {
     SHAKE("шейк"),

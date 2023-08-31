@@ -1,4 +1,4 @@
-package app;
+package main.java.app.enums;
 
 public enum Operation {
     SHELF_OVERVIEW("осмотреть свой бар"),

@@ -1,4 +1,7 @@
-package app.components;
+package main.java.app.models;
+
+import main.java.app.enums.ComponentType;
+import main.java.app.enums.ComponentUnit;
 
 public class Component {
     private String brand;

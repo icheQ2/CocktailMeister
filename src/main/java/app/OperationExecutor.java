@@ -1,4 +1,6 @@
-package app;
+package main.java.app;
+
+import main.java.app.enums.Operation;
 
 public class OperationExecutor {
 

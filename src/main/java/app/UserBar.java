@@ -1,9 +1,9 @@
-package app;
+package main.java.app;
 
-import app.components.Component;
-import app.components.ComponentType;
-import app.components.ComponentUnit;
-import app.shelf.UserShelf;
+import main.java.app.models.Component;
+import main.java.app.enums.ComponentType;
+import main.java.app.enums.ComponentUnit;
+import main.java.app.models.UserShelf;
 
 import java.io.IOException;
 import java.util.Collection;

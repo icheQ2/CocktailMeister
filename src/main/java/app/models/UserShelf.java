@@ -1,6 +1,4 @@
-package app.shelf;
-
-import app.components.Component;
+package main.java.app.models;
 
 import java.util.HashMap;
 import java.util.Map;

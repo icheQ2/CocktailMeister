@@ -1,4 +1,4 @@
-package app.components;
+package main.java.app.enums;
 
 public enum ComponentUnit {
     ML("мл"),
