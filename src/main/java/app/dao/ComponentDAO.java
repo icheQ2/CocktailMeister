@@ -41,6 +41,6 @@ public class ComponentDAO {
     }
 
     public void delete (long id) {
-        components.removeIf(shelf -> shelf.getId() == id);
+        components.removeIf(component -> component.getId() == id);
     }
 }

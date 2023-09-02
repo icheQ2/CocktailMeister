@@ -18,4 +18,12 @@ public enum PreparationMethod {
     public String getMethod() {
         return method;
     }
+
+    public static String getValues() {
+        String values = "";
+        for (PreparationMethod value : PreparationMethod.values()) {
+            values += String.format(", %d - %s", value.ordinal(), value);
+        }
+        return values.substring(2);
+    }
 }

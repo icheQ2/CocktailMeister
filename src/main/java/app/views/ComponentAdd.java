@@ -10,10 +10,11 @@ import app.models.Component;
 import java.util.List;
 
 public class ComponentAdd {
-
     public static void execute(User user) throws Exception {
         long userId = user.getUserId();
         List<Component> components = ComponentController.showAll(userId);
+        ConsoleHelper.writeMessage("");
+        ConsoleHelper.writeMessage("Добавление компонента");
         ConsoleHelper.writeMessage("");
         ConsoleHelper.writeMessage("Введи бренд:");
         String brand = ConsoleHelper.readString();

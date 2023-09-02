@@ -10,8 +10,10 @@ import app.models.Shelf;
 import java.util.List;
 
 public class ShelfShow {
-
-    public static void execute(User user) {
+    public static void execute(User user) throws Exception {
+        ConsoleHelper.writeMessage("");
+        ConsoleHelper.writeMessage("Отображение бара пользователя");
+        ConsoleHelper.writeMessage("");
         long userId = user.getUserId();
         String userName = user.getUserName();
         Shelf shelf = ShelfController.show(userId);

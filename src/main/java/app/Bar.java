@@ -40,11 +40,11 @@ public class Bar {
         ConsoleHelper.writeMessage(String.format("\t %d - %s",
                 Operation.SHELF_EDIT.ordinal(), Operation.SHELF_EDIT.getFunction()));
         ConsoleHelper.writeMessage(String.format("\t %d - %s",
-                Operation.COCKTAIL_SUGGEST.ordinal(), Operation.COCKTAIL_SUGGEST.getFunction()));
+                Operation.RECEIPT_SUGGEST.ordinal(), Operation.RECEIPT_SUGGEST.getFunction()));
         ConsoleHelper.writeMessage(String.format("\t %d - %s",
-                Operation.COCKTAIL_ADD.ordinal(), Operation.COCKTAIL_ADD.getFunction()));
+                Operation.RECEIPT_ADD.ordinal(), Operation.RECEIPT_ADD.getFunction()));
         ConsoleHelper.writeMessage(String.format("\t %d - %s",
-                Operation.COCKTAIL_EDIT.ordinal(), Operation.COCKTAIL_EDIT.getFunction()));
+                Operation.RECEIPT_EDIT.ordinal(), Operation.RECEIPT_EDIT.getFunction()));
         ConsoleHelper.writeMessage(String.format("\t %d - %s",
                 Operation.APP_EXIT.ordinal(), Operation.APP_EXIT.getFunction()));
 

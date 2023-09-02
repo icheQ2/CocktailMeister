@@ -14,6 +14,8 @@ public class ComponentEdit {
         long userId = user.getUserId();
         List<Component> components = ComponentController.showAll(userId);
         ConsoleHelper.writeMessage("");
+        ConsoleHelper.writeMessage("Изменение компонента");
+        ConsoleHelper.writeMessage("");
         ConsoleHelper.writeMessage("Выбери компонент, который нужно изменить:");
         for (int i = 0; i < components.size(); i++) {
             ConsoleHelper.writeMessage(String.format("\t %d - %s", i, components.get(i).toString()));

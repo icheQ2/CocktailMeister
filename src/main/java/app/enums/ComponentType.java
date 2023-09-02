@@ -10,6 +10,7 @@ public enum ComponentType {
     LIQUOR("ликёр"),
     BEER("пиво"),
     WINE("вино"),
+    LEMONADE("лимонад"),
     SYRUP("сироп"),
     JUICE("сок"),
     FRESH("фреш"),

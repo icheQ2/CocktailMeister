@@ -1,9 +1,7 @@
 package app;
 
 import app.enums.Operation;
-import app.views.ShelfShow;
-import app.views.ComponentAdd;
-import app.views.ComponentEdit;
+import app.views.*;
 
 public class OperationExecutor {
 
@@ -18,11 +16,13 @@ public class OperationExecutor {
             case SHELF_EDIT:
                 ComponentEdit.execute(user);
                 break;
-            case COCKTAIL_SUGGEST:
+            case RECEIPT_SUGGEST:
+                ReceiptSuggest.execute();
                 break;
-            case COCKTAIL_ADD:
+            case RECEIPT_ADD:
+                ReceiptAdd.execute(user);
                 break;
-            case COCKTAIL_EDIT:
+            case RECEIPT_EDIT:
                 break;
             case APP_EXIT:
                 ConsoleHelper.writeMessage("До встречи!");
