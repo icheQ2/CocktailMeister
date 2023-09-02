@@ -1,6 +1,6 @@
-package main.java.app.models;
+package app.models;
 
-import main.java.app.enums.PreparationMethod;
+import app.enums.PreparationMethod;
 
 import java.util.List;
 import java.util.Map;

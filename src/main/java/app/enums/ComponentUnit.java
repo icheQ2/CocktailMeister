@@ -1,4 +1,4 @@
-package main.java.app.enums;
+package app.enums;
 
 public enum ComponentUnit {
     ML("мл"),
@@ -20,7 +20,7 @@ public enum ComponentUnit {
     public static String getValues() {
         String values = "";
         for (ComponentUnit value : ComponentUnit.values()) {
-            values += ", " + value;
+            values += String.format(", %d - %s", value.ordinal(), value);
         }
         return values.substring(2);
     }

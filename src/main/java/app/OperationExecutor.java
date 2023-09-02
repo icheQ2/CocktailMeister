@@ -1,18 +1,22 @@
-package main.java.app;
+package app;
 
-import main.java.app.enums.Operation;
+import app.enums.Operation;
+import app.views.ShelfShow;
+import app.views.ComponentAdd;
+import app.views.ComponentEdit;
 
 public class OperationExecutor {
 
-    public static void execute(Operation operation, UserBar userBar) throws Exception {
+    public static void execute(Operation operation, User user) throws Exception {
         switch (operation) {
             case SHELF_OVERVIEW:
-                userBar.shelfOverview();
+                ShelfShow.execute(user);
                 break;
             case SHELF_ADD:
-                userBar.shelfAdd();
+                ComponentAdd.execute(user);
                 break;
             case SHELF_EDIT:
+                ComponentEdit.execute(user);
                 break;
             case COCKTAIL_SUGGEST:
                 break;

@@ -1,25 +1,40 @@
-package main.java.app.models;
+package app.models;
 
-import main.java.app.enums.ComponentType;
-import main.java.app.enums.ComponentUnit;
+import app.enums.ComponentType;
+import app.enums.ComponentUnit;
 
 public class Component {
+    private final long userId;
+    private long id;
     private String brand;
     private String product;
     private ComponentType type;
     private ComponentUnit unit;
     private double costPerUnit;
     private double currentVolume;
+    private double totalCost;
     private String comment;
+    private static long counter;
 
-    public Component(String brand, String product, ComponentType type, ComponentUnit unit, double costPerUnit, double currentVolume, String comment) {
+    public Component(long userId, String brand, String product, ComponentType type, ComponentUnit unit, double costPerUnit, double currentVolume, String comment) {
+        this.userId = userId;
+        this.id = counter++;
         this.brand = brand;
         this.product = product;
         this.type = type;
         this.unit = unit;
         this.costPerUnit = costPerUnit;
         this.currentVolume = currentVolume;
+        this.totalCost = costPerUnit * currentVolume;
         this.comment = comment;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getBrand() {
@@ -68,6 +83,10 @@ public class Component {
 
     public void setCurrentVolume(double currentVolume) {
         this.currentVolume = currentVolume;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
     }
 
     public String getComment() {

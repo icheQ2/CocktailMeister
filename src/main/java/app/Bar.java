@@ -1,13 +1,18 @@
-package main.java.app;
+package app;
 
-import main.java.app.enums.Operation;
+import app.config.SpringConfig;
+import app.enums.Operation;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
 
 public class Bar {
     public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+                SpringConfig.class
+        );
 
-        UserBar userBar = new UserBar("Dima", 123L);
+        User user = new User("Dima", 123L);
 
 
         Operation operation = null;
@@ -15,7 +20,7 @@ public class Bar {
         do {
             try {
                 operation = askOperation();
-                OperationExecutor.execute(operation, userBar);
+                OperationExecutor.execute(operation, user);
             } catch (Exception e) {
                 ConsoleHelper.writeMessage("ПРОИЗОШЛА ОШИБКА:");
                 e.printStackTrace();

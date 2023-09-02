@@ -1,4 +1,4 @@
-package main.java.app.enums;
+package app.enums;
 
 public enum ComponentType {
     GIN("джин"),
@@ -28,7 +28,7 @@ public enum ComponentType {
     public static String getValues() {
         String values = "";
         for (ComponentType value : ComponentType.values()) {
-            values += ", " + value;
+            values += String.format(", %d - %s", value.ordinal(), value);
         }
         return values.substring(2);
     }

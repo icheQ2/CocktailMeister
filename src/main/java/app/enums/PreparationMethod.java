@@ -1,4 +1,4 @@
-package main.java.app.enums;
+package app.enums;
 
 public enum PreparationMethod {
     SHAKE("шейк"),
