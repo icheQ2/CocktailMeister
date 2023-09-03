@@ -23,5 +23,7 @@ public class ReceiptSuggest {
             ConsoleHelper.writeMessage("");
             ConsoleHelper.writeMessage(receipt.toString());
         }
+
+        //ДОБАВИТЬ ГОТОВКУ КОКТЕЙЛЯ, ВЫБОР ИНГРИДИЕНТОВ ИЗ СПИСКА И ИХ УБАВЛЕНИЕ ПОСЛЕ ПРИГОТОВКИ
     }
 }

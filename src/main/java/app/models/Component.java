@@ -1,7 +1,6 @@
 package app.models;
 
 import app.enums.ComponentType;
-import app.enums.ComponentUnit;
 
 public class Component {
     private final long userId;
@@ -9,20 +8,18 @@ public class Component {
     private String brand;
     private String product;
     private ComponentType type;
-    private ComponentUnit unit;
     private double costPerUnit;
     private double currentVolume;
     private double totalCost;
     private String comment;
     private static long counter;
 
-    public Component(long userId, String brand, String product, ComponentType type, ComponentUnit unit, double costPerUnit, double currentVolume, String comment) {
+    public Component(long userId, String brand, String product, ComponentType type, double costPerUnit, double currentVolume, String comment) {
         this.userId = userId;
         this.id = counter++;
         this.brand = brand;
         this.product = product;
         this.type = type;
-        this.unit = unit;
         this.costPerUnit = costPerUnit;
         this.currentVolume = currentVolume;
         this.totalCost = costPerUnit * currentVolume;
@@ -61,14 +58,6 @@ public class Component {
         this.type = type;
     }
 
-    public ComponentUnit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(ComponentUnit unit) {
-        this.unit = unit;
-    }
-
     public double getCostPerUnit() {
         return costPerUnit;
     }
@@ -102,6 +91,6 @@ public class Component {
         String typeCap = type.getType().substring(0, 1).toUpperCase() + type.getType().substring(1);
         String brandAndName = brand.equals(product) ? brand : brand + " " + product;
         return String.format("%s %s | %.0f %s | %.2f ₽/%s | %s",
-                typeCap, brandAndName, currentVolume, unit.getUnit(), costPerUnit, unit.getUnit(), comment);
+                typeCap, brandAndName, currentVolume, type.getUnit(), costPerUnit, type.getUnit(), comment);
     }
 }

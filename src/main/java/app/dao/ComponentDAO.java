@@ -34,7 +34,6 @@ public class ComponentDAO {
         componentToBeUpdated.setBrand(component.getBrand());
         componentToBeUpdated.setProduct(component.getProduct());
         componentToBeUpdated.setType(component.getType());
-        componentToBeUpdated.setUnit(component.getUnit());
         componentToBeUpdated.setCostPerUnit(component.getCostPerUnit());
         componentToBeUpdated.setCurrentVolume(component.getCurrentVolume());
         componentToBeUpdated.setComment(component.getComment());

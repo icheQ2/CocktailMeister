@@ -4,7 +4,6 @@ import app.ConsoleHelper;
 import app.User;
 import app.controllers.ComponentController;
 import app.enums.ComponentType;
-import app.enums.ComponentUnit;
 import app.models.Component;
 
 import java.util.List;
@@ -45,17 +44,12 @@ public class ComponentEdit {
         if (!type.equals("=")) {
             component.setType(ComponentType.values()[Integer.parseInt(type)]);
         }
-        ConsoleHelper.writeMessage(String.format("Выбери новые единицы измерения (%s):", ComponentUnit.getValues()));
-        String unit = ConsoleHelper.readString();
-        if (!unit.equals("=")) {
-            component.setUnit(ComponentUnit.values()[Integer.parseInt(unit)]);
-        }
-        ConsoleHelper.writeMessage(String.format("Введи новую стоимость за %s:", component.getUnit().getUnit()));
+        ConsoleHelper.writeMessage(String.format("Введи новую стоимость за %s:", component.getType().getUnit()));
         String costPerUnit = ConsoleHelper.readString();
         if (!costPerUnit.equals("=")) {
             component.setCostPerUnit(Double.parseDouble(costPerUnit));
         }
-        ConsoleHelper.writeMessage(String.format("Введи новый объём в %s:", component.getUnit().getUnit()));
+        ConsoleHelper.writeMessage(String.format("Введи новый объём в %s:", component.getType().getUnit()));
         String volume = ConsoleHelper.readString();
         if (!volume.equals("=")) {
             component.setCurrentVolume(Double.parseDouble(volume));

@@ -32,7 +32,8 @@ public class ReceiptDAO {
         Receipt componentToBeUpdated = show(id);
 
         componentToBeUpdated.setName(receipt.getName());
-        componentToBeUpdated.setIngredients(receipt.getIngredients());
+        componentToBeUpdated.setIngredientsList(receipt.getIngredientsList());
+        componentToBeUpdated.setVolumesList(receipt.getVolumesList());
         componentToBeUpdated.setPrice(receipt.getPrice());
         componentToBeUpdated.setVolume(receipt.getVolume());
         componentToBeUpdated.setPreparationMethods(receipt.getPreparationMethods());
