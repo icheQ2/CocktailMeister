@@ -20,9 +20,10 @@ public class OperationExecutor {
                 ReceiptSuggest.execute();
                 break;
             case RECEIPT_ADD:
-                ReceiptAdd.execute(user);
+                ReceiptAdd.execute();
                 break;
             case RECEIPT_EDIT:
+                ReceiptEdit.execute();
                 break;
             case APP_EXIT:
                 ConsoleHelper.writeMessage("До встречи!");

@@ -1,19 +1,16 @@
 package app.views;
 
 import app.ConsoleHelper;
-import app.User;
-import app.controllers.ComponentController;
 import app.controllers.ReceiptController;
-import app.enums.ComponentType;
+import app.enums.component_types.MajorType;
 import app.enums.PreparationMethod;
-import app.models.Component;
 import app.models.Receipt;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReceiptAdd {
-    public static void execute(User user) throws Exception {
+    public static void execute() throws Exception {
         ConsoleHelper.writeMessage("");
         ConsoleHelper.writeMessage("Создание коктейля");
         ConsoleHelper.writeMessage("");
@@ -23,18 +20,18 @@ public class ReceiptAdd {
         ConsoleHelper.writeMessage("[введи \"=\" для перехода дальше]");
         String ingredientInput = "";
         double volumeInput;
-        List<ComponentType> ingredientsList = new ArrayList<>();
+        List<MajorType> ingredientsList = new ArrayList<>();
         List<Double> volumesList = new ArrayList<>();
         double totalVolume = 0;
         while (!ingredientInput.equals("=")) {
             ConsoleHelper.writeMessage("Выбери компонент:");
-            ConsoleHelper.writeMessage(ComponentType.getValues());
+            ConsoleHelper.writeMessage(MajorType.getValues());
             ingredientInput = ConsoleHelper.readString();
             if (!ingredientInput.equals("=")) {
                 ConsoleHelper.writeMessage("Введи объём:");
                 volumeInput = ConsoleHelper.readDouble();
-                ComponentType componentType = ComponentType.values()[Integer.parseInt(ingredientInput)];
-                ingredientsList.add(componentType);
+                MajorType majorType = MajorType.values()[Integer.parseInt(ingredientInput)];
+                ingredientsList.add(majorType);
                 volumesList.add(volumeInput);
                 totalVolume += volumeInput;
             }

@@ -3,7 +3,8 @@ package app.views;
 import app.ConsoleHelper;
 import app.User;
 import app.controllers.ComponentController;
-import app.enums.ComponentType;
+import app.enums.component_types.MajorType;
+import app.enums.component_types.ComponentType;
 import app.models.Component;
 
 import java.util.List;
@@ -15,20 +16,15 @@ public class ComponentAdd {
         ConsoleHelper.writeMessage("");
         ConsoleHelper.writeMessage("Добавление компонента");
         ConsoleHelper.writeMessage("");
-        ConsoleHelper.writeMessage("Введи бренд:");
-        String brand = ConsoleHelper.readString();
         ConsoleHelper.writeMessage("Введи название продукта:");
         String product = ConsoleHelper.readString();
-        ComponentType type = null;
+        ConsoleHelper.writeMessage(String.format("Выбери тип (%s):", MajorType.getValues()));
+        ComponentType type = MajorType.getSubType(MajorType.values()[ConsoleHelper.readInt()]);
         Component usedComponent = null;
         for (Component component : components) {
-            if (component.getBrand().equals(brand) && component.getProduct().equals(product)) {
+            if (component.getProduct().equals(product) && component.getType().equals(type)) {
                 usedComponent = component;
             }
-        }
-        if (usedComponent == null) {
-            ConsoleHelper.writeMessage(String.format("Выбери тип (%s):", ComponentType.getValues()));
-            type = ComponentType.values()[ConsoleHelper.readInt()];
         }
         ConsoleHelper.writeMessage("Введи стоимость:");
         double cost = ConsoleHelper.readDouble();
@@ -37,7 +33,7 @@ public class ComponentAdd {
         if (usedComponent == null) {
             ConsoleHelper.writeMessage("Введи примечание:");
             String comment = ConsoleHelper.readString();
-            ComponentController.create(new Component(userId, product, brand, type, cost / volume, volume, comment));
+            ComponentController.create(new Component(userId, product, type, cost / volume, volume, comment));
             ConsoleHelper.writeMessage("");
             ConsoleHelper.writeMessage("Поставили компонент на полку!");
         } else {

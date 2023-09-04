@@ -1,11 +1,10 @@
 package app.models;
 
-import app.enums.ComponentType;
+import app.enums.component_types.ComponentType;
 
 public class Component {
     private final long userId;
     private long id;
-    private String brand;
     private String product;
     private ComponentType type;
     private double costPerUnit;
@@ -14,10 +13,9 @@ public class Component {
     private String comment;
     private static long counter;
 
-    public Component(long userId, String brand, String product, ComponentType type, double costPerUnit, double currentVolume, String comment) {
+    public Component(long userId, String product, ComponentType type, double costPerUnit, double currentVolume, String comment) {
         this.userId = userId;
         this.id = counter++;
-        this.brand = brand;
         this.product = product;
         this.type = type;
         this.costPerUnit = costPerUnit;
@@ -32,14 +30,6 @@ public class Component {
 
     public long getId() {
         return id;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public String getProduct() {
@@ -89,8 +79,7 @@ public class Component {
     @Override
     public String toString() {
         String typeCap = type.getType().substring(0, 1).toUpperCase() + type.getType().substring(1);
-        String brandAndName = brand.equals(product) ? brand : brand + " " + product;
         return String.format("%s %s | %.0f %s | %.2f ₽/%s | %s",
-                typeCap, brandAndName, currentVolume, type.getUnit(), costPerUnit, type.getUnit(), comment);
+                typeCap, product, currentVolume, type.getUnit(), costPerUnit, type.getUnit(), comment);
     }
 }

@@ -3,7 +3,7 @@ package app.views;
 import app.ConsoleHelper;
 import app.User;
 import app.controllers.ComponentController;
-import app.enums.ComponentType;
+import app.enums.component_types.MajorType;
 import app.models.Component;
 
 import java.util.List;
@@ -39,10 +39,10 @@ public class ComponentEdit {
         if (!product.equals("=")) {
             component.setProduct(product);
         }
-        ConsoleHelper.writeMessage(String.format("Выбери новый тип (%s):", ComponentType.getValues()));
+        ConsoleHelper.writeMessage(String.format("Выбери новый тип (%s):", MajorType.getValues()));
         String type = ConsoleHelper.readString();
         if (!type.equals("=")) {
-            component.setType(ComponentType.values()[Integer.parseInt(type)]);
+            component.setType(MajorType.values()[Integer.parseInt(type)]);
         }
         ConsoleHelper.writeMessage(String.format("Введи новую стоимость за %s:", component.getType().getUnit()));
         String costPerUnit = ConsoleHelper.readString();

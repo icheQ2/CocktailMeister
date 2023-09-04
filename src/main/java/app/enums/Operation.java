@@ -6,7 +6,7 @@ public enum Operation {
     SHELF_EDIT("изменить свой бар"),
     RECEIPT_SUGGEST("предложить коктейль"),
     RECEIPT_ADD("добавить новый коктейль в базу"),
-    RECEIPT_EDIT("изменить базу коктейлей"),
+    RECEIPT_EDIT("изменить рецепт коктейля в базе"),
     APP_EXIT("выйти из приложения");
 
     private final String function;

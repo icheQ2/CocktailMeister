@@ -1,15 +1,14 @@
 package app.models;
 
-import app.enums.ComponentType;
+import app.enums.component_types.MajorType;
 import app.enums.PreparationMethod;
 
 import java.util.List;
-import java.util.Map;
 
 public class Receipt {
     private long id;
     private String name;
-    private List<ComponentType> ingredientsList;
+    private List<MajorType> ingredientsList;
     private List<Double> volumesList;
     private double price;
     private double volume;
@@ -20,7 +19,7 @@ public class Receipt {
     private long dislikes;
     private static long counter;
 
-    public Receipt(String name, List<ComponentType> ingredientsList, List<Double> volumesList, double price, double volume, List<PreparationMethod> preparationMethods, String comment) {
+    public Receipt(String name, List<MajorType> ingredientsList, List<Double> volumesList, double price, double volume, List<PreparationMethod> preparationMethods, String comment) {
         this.id = counter++;
         this.name = name;
         this.ingredientsList = ingredientsList;
@@ -46,11 +45,11 @@ public class Receipt {
         this.name = name;
     }
 
-    public List<ComponentType> getIngredientsList() {
+    public List<MajorType> getIngredientsList() {
         return ingredientsList;
     }
 
-    public void setIngredientsList(List<ComponentType> ingredientsList) {
+    public void setIngredientsList(List<MajorType> ingredientsList) {
         this.ingredientsList = ingredientsList;
     }
 
@@ -86,6 +85,14 @@ public class Receipt {
         this.preparationMethods = preparationMethods;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     public void cocktailDone() {
         timesDone++;
     }
@@ -100,8 +107,8 @@ public class Receipt {
 
     public String toShortString() {
         String ingredientsTypes = "";
-        for (ComponentType componentType : ingredientsList) {
-            ingredientsTypes += String.format(", %s", componentType.getType());
+        for (MajorType majorType : ingredientsList) {
+            ingredientsTypes += String.format(", %s", majorType.getType());
         }
         ingredientsTypes = ingredientsTypes.substring(2);
         String methodsNames = "";
