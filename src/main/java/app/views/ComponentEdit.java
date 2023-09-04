@@ -29,11 +29,6 @@ public class ComponentEdit {
             return;
         }
             ConsoleHelper.writeMessage("Поэтапно измени параметры компонента. Вводи '=', чтобы сохранить прежнее значение.");
-        ConsoleHelper.writeMessage("Введи новый бренд:");
-        String brand = ConsoleHelper.readString();
-        if (!brand.equals("=")) {
-            component.setBrand(brand);
-        }
         ConsoleHelper.writeMessage("Введи новое название продукта:");
         String product = ConsoleHelper.readString();
         if (!product.equals("=")) {
