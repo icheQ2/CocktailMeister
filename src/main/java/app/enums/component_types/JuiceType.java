@@ -5,7 +5,10 @@ public enum JuiceType implements ComponentType {
     JUICE_APPLE("сок яблочный","мл"),
     JUICE_POMEGRANATE("сок гранатовый","мл"),
     JUICE_PINEAPPLE("сок ананасовый","мл"),
-    JUICE_CRANBERRY("сок клюквенный","мл");
+    JUICE_CRANBERRY("сок клюквенный","мл"),
+    JUICE_GRAPEFRUIT("сок грейпфрутовый","мл"),
+    JUICE_BERRY("ягодный морс","мл"),
+    JUICE_TOMATO("сок томатный","мл");
 
     private final String type;
     private final String unit;

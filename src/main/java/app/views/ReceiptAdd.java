@@ -2,7 +2,8 @@ package app.views;
 
 import app.ConsoleHelper;
 import app.controllers.ReceiptController;
-import app.enums.component_types.MajorType;
+import app.enums.component_types.ComponentType;
+import app.enums.component_types.Type;
 import app.enums.PreparationMethod;
 import app.models.Receipt;
 
@@ -20,18 +21,17 @@ public class ReceiptAdd {
         ConsoleHelper.writeMessage("[введи \"=\" для перехода дальше]");
         String ingredientInput = "";
         double volumeInput;
-        List<MajorType> ingredientsList = new ArrayList<>();
+        List<ComponentType> ingredientsList = new ArrayList<>();
         List<Double> volumesList = new ArrayList<>();
         double totalVolume = 0;
         while (!ingredientInput.equals("=")) {
-            ConsoleHelper.writeMessage("Выбери компонент:");
-            ConsoleHelper.writeMessage(MajorType.getValues());
+            ConsoleHelper.writeMessage(String.format("Выбери тип компонента (%s):", Type.getValues()));
             ingredientInput = ConsoleHelper.readString();
             if (!ingredientInput.equals("=")) {
-                ConsoleHelper.writeMessage("Введи объём:");
+                ComponentType type = Type.getSubType(Type.values()[Integer.parseInt(ingredientInput)]);
+                ConsoleHelper.writeMessage(String.format("Введи объём (%s):", type.getUnit()));
                 volumeInput = ConsoleHelper.readDouble();
-                MajorType majorType = MajorType.values()[Integer.parseInt(ingredientInput)];
-                ingredientsList.add(majorType);
+                ingredientsList.add(type);
                 volumesList.add(volumeInput);
                 totalVolume += volumeInput;
             }
@@ -49,6 +49,6 @@ public class ReceiptAdd {
         ConsoleHelper.writeMessage("Введи примечание:");
         String comment = ConsoleHelper.readString();
 
-        ReceiptController.create(new Receipt(name, ingredientsList, volumesList, -1, totalVolume, preparationMethods, comment));
+        ReceiptController.create(new Receipt(name, ingredientsList, volumesList, preparationMethods, comment));
     }
 }

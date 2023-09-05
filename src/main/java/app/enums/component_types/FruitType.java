@@ -1,14 +1,13 @@
 package app.enums.component_types;
 
-public enum VodkaType implements ComponentType {
-    VODKA_REGULAR("водка обычная","мл"),
-    VODKA_VANILLA("водка ванильная","мл"),
-    VODKA_PEACH("водка персиковая","мл");
+public enum FruitType implements ComponentType {
+    FRUIT_FROZENPINEAPPLE("замороженный ананас","гр"),
+    FRUIT_PASSIONFRUIT("пюре маракуйя","гр");
 
     private final String type;
     private final String unit;
 
-    VodkaType(String type, String unit) {
+    FruitType(String type, String unit) {
         this.type = type;
         this.unit = unit;
     }
@@ -24,7 +23,7 @@ public enum VodkaType implements ComponentType {
 
     public static String getValues() {
         String values = "";
-        for (VodkaType value : VodkaType.values()) {
+        for (FruitType value : FruitType.values()) {
             values += String.format(", %d - %s", value.ordinal(), value.getType());
         }
         return values.substring(2);

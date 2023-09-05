@@ -2,9 +2,11 @@ package app.enums.component_types;
 
 public enum BeerType implements ComponentType {
     BEER_LIGHT("пиво светлое","мл"),
+    BEER_LIGHTLAGER("пиво лагер светлое","мл"),
+    BEER_DARK("пиво тёмное", "мл"),
+    BEER_DARKLAGER("пиво лагер тёмное", "мл"),
     BEER_MEXICAN("пиво мексиканское","мл"),
     BEER_CIDER("сидр","мл"),
-    BEER_DARK("пиво тёмное", "мл"),
     BEER_STOUT("пиво стаут", "мл");
 
     private final String type;

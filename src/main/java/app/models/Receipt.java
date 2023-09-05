@@ -1,6 +1,6 @@
 package app.models;
 
-import app.enums.component_types.MajorType;
+import app.enums.component_types.ComponentType;
 import app.enums.PreparationMethod;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class Receipt {
     private long id;
     private String name;
-    private List<MajorType> ingredientsList;
+    private List<ComponentType> ingredientsList;
     private List<Double> volumesList;
     private double price;
     private double volume;
@@ -19,13 +19,13 @@ public class Receipt {
     private long dislikes;
     private static long counter;
 
-    public Receipt(String name, List<MajorType> ingredientsList, List<Double> volumesList, double price, double volume, List<PreparationMethod> preparationMethods, String comment) {
+    public Receipt(String name, List<ComponentType> ingredientsList, List<Double> volumesList, List<PreparationMethod> preparationMethods, String comment) {
         this.id = counter++;
         this.name = name;
         this.ingredientsList = ingredientsList;
         this.volumesList = volumesList;
-        this.price = price;
-        this.volume = volume;
+        price = -1d;
+        updateVolume();
         this.preparationMethods = preparationMethods;
         this.comment = comment;
         this.timesDone = 0;
@@ -45,11 +45,11 @@ public class Receipt {
         this.name = name;
     }
 
-    public List<MajorType> getIngredientsList() {
+    public List<ComponentType> getIngredientsList() {
         return ingredientsList;
     }
 
-    public void setIngredientsList(List<MajorType> ingredientsList) {
+    public void setIngredientsList(List<ComponentType> ingredientsList) {
         this.ingredientsList = ingredientsList;
     }
 
@@ -73,8 +73,14 @@ public class Receipt {
         return volume;
     }
 
-    public void setVolume(double volume) {
-        this.volume = volume;
+    public void updateVolume() {
+        double updatedVolume = 0;
+        for (int i = 0; i < ingredientsList.size(); i++) {
+            if(ingredientsList.get(i).getUnit().equals("мл")) {
+                updatedVolume += volumesList.get(i);
+            }
+        }
+        this.volume = updatedVolume;
     }
 
     public List<PreparationMethod> getPreparationMethods() {
@@ -107,8 +113,8 @@ public class Receipt {
 
     public String toShortString() {
         String ingredientsTypes = "";
-        for (MajorType majorType : ingredientsList) {
-            ingredientsTypes += String.format(", %s", majorType.getType());
+        for (ComponentType componentType : ingredientsList) {
+            ingredientsTypes += String.format(", %s", componentType.getType());
         }
         ingredientsTypes = ingredientsTypes.substring(2);
         String methodsNames = "";
@@ -131,7 +137,7 @@ public class Receipt {
     public String toString() {
         String result = String.format("Коктейль \"%s\" (%.0f мл)\n", name, volume);
         if (price == -1 && timesDone == 0) {
-            result += String.format("Данный коктейль ни разу не готовили!\n", price);
+            result += "Данный коктейль ни разу не готовили!\n";
         } else {
             result += String.format("Стоимость: %.2f ₽, сделан %d раз (%d\uD83D\uDC4D %d\uD83D\uDC4E)\n", price, timesDone, likes, dislikes);
         }

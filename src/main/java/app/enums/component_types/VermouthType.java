@@ -1,14 +1,16 @@
 package app.enums.component_types;
 
-public enum VodkaType implements ComponentType {
-    VODKA_REGULAR("водка обычная","мл"),
-    VODKA_VANILLA("водка ванильная","мл"),
-    VODKA_PEACH("водка персиковая","мл");
+public enum VermouthType implements ComponentType {
+    VERMOUTH_REDDRY("вермут красный сухой","мл"),
+    VERMOUTH_REDSWEET("вермут красный сладкий","мл"),
+    VERMOUTH_WHITEDRY("вермут белый сухой","мл"),
+    VERMOUTH_WHITESWEET("вермут белый сладкий","мл"),
+    VERMOUTH_LILLET("лилле","мл");
 
     private final String type;
     private final String unit;
 
-    VodkaType(String type, String unit) {
+    VermouthType(String type, String unit) {
         this.type = type;
         this.unit = unit;
     }
@@ -24,7 +26,7 @@ public enum VodkaType implements ComponentType {
 
     public static String getValues() {
         String values = "";
-        for (VodkaType value : VodkaType.values()) {
+        for (VermouthType value : VermouthType.values()) {
             values += String.format(", %d - %s", value.ordinal(), value.getType());
         }
         return values.substring(2);

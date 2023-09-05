@@ -4,7 +4,13 @@ public enum SyrupType implements ComponentType {
     SYRUP_SIMPLE("сироп сахарный 1:1","мл"),
     SYRUP_RICH("сироп сахарный 2:1","мл"),
     SYRUP_GRENADINE("сироп гренадин","мл"),
-    SYRUP_VANILLA("сироп ванильный","мл");
+    SYRUP_VANILLA("сироп ванильный","мл"),
+    SYRUP_COCONUT("сироп кокосовый крем","мл"),
+    SYRUP_CHOCO("сироп шоколадный","мл"),
+    SYRUP_MAPLE("сироп кленовый","мл"),
+    SYRUP_CINNAMON("сироп коричный","мл"),
+    SYRUP_MINT("сироп мятный","мл"),
+    SYRUP_AGAVE("сироп агавы","мл");
 
     private final String type;
     private final String unit;

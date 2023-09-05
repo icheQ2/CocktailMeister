@@ -1,8 +1,8 @@
 package app.enums.component_types;
 
 public enum IceType implements ComponentType {
-    ICE_CUBES("лёд кубиками","шт"),
-    ICE_CRASH("лёд краш","гр");
+    ICE_CUBES("лёд кубиками","порц"),
+    ICE_CRUSHED("лёд колотый","порц");
 
     private final String type;
     private final String unit;

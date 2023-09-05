@@ -3,7 +3,8 @@ package app.views;
 import app.ConsoleHelper;
 import app.controllers.ComponentController;
 import app.controllers.ReceiptController;
-import app.enums.component_types.MajorType;
+import app.enums.component_types.ComponentType;
+import app.enums.component_types.Type;
 import app.enums.PreparationMethod;
 import app.models.Receipt;
 
@@ -42,25 +43,23 @@ public class ReceiptEdit {
             ConsoleHelper.writeMessage("[введи \"=\" для перехода дальше]");
             String ingredientInput = "";
             double volumeInput;
-            List<MajorType> ingredientsList = new ArrayList<>();
+            List<ComponentType> ingredientsList = new ArrayList<>();
             List<Double> volumesList = new ArrayList<>();
-            double totalVolume = 0;
             while (!ingredientInput.equals("=")) {
-                ConsoleHelper.writeMessage("Выбери компонент:");
-                ConsoleHelper.writeMessage(MajorType.getValues());
+                ConsoleHelper.writeMessage(String.format("Выбери тип компонента (%s):", Type.getValues()));
+                ConsoleHelper.writeMessage(Type.getValues());
                 ingredientInput = ConsoleHelper.readString();
                 if (!ingredientInput.equals("=")) {
-                    ConsoleHelper.writeMessage("Введи объём:");
+                    ComponentType type = Type.getSubType(Type.values()[Integer.parseInt(ingredientInput)]);
+                    ConsoleHelper.writeMessage(String.format("Введи объём (%s):", type.getUnit()));
                     volumeInput = ConsoleHelper.readDouble();
-                    MajorType majorType = MajorType.values()[Integer.parseInt(ingredientInput)];
-                    ingredientsList.add(majorType);
+                    ingredientsList.add(type);
                     volumesList.add(volumeInput);
-                    totalVolume += volumeInput;
                 }
             }
             receipt.setIngredientsList(ingredientsList);
             receipt.setVolumesList(volumesList);
-            receipt.setVolume(totalVolume);
+            receipt.updateVolume();
         }
         ConsoleHelper.writeMessage("Хочешь заново выбрать методы приготовления (Y) или оставить прежние (N)?");
         String answer3 = ConsoleHelper.readString();

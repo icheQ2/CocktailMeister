@@ -1,18 +1,17 @@
 package app.enums;
 
-public enum PreparationMethod {
+public enum CocktailTypeWRITETHIS {
     SHAKE("шейк"),
     BUILD("билд"),
     STIR("стир"),
     DRY_STIR("сухой стир"),
     MUDDL("мадл"),
     LAYERS("слоями"),
-    IGNITE("поджечь"),
-    BLEND("бленд");
+    IGNITE("поджечь");
 
     private final String method;
 
-    PreparationMethod(String method) {
+    CocktailTypeWRITETHIS(String method) {
         this.method = method;
     }
 
@@ -22,7 +21,7 @@ public enum PreparationMethod {
 
     public static String getValues() {
         String values = "";
-        for (PreparationMethod value : PreparationMethod.values()) {
+        for (CocktailTypeWRITETHIS value : CocktailTypeWRITETHIS.values()) {
             values += String.format(", %d - %s", value.ordinal(), value);
         }
         return values.substring(2);

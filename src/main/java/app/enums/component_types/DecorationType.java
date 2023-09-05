@@ -2,7 +2,8 @@ package app.enums.component_types;
 
 public enum DecorationType implements ComponentType {
     DECORATION_PINEAPPLELEAF("листик ананаса","шт"),
-    DECORATION_ORANGEPEEL("цедра апельсина","шт");
+    DECORATION_ORANGEPEEL("цедра апельсина","шт"),
+    DECORATION_MINT("листья мяты","шт");
 
     private final String type;
     private final String unit;

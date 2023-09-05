@@ -4,7 +4,10 @@ public enum CreamType implements ComponentType {
     CREAM_LIGHT("сливки 10%","мл"),
     CREAM_MEDIUM("сливки 20%","мл"),
     CREAM_FAT("сливки 30%","мл"),
-    CREAM_MILK("молоко","мл");
+    CREAM_WHIPPED("сливки взбитые","мл"),
+    CREAM_MILK("молоко","мл"),
+    CREAM_EGGWHITE("яичный белок","мл"),
+    CREAM_COCONUT("молоко кокосовое","мл");
 
     private final String type;
     private final String unit;

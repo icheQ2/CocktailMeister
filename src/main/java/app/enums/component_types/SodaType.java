@@ -6,8 +6,11 @@ public enum SodaType implements ComponentType {
     SODA_GINGERBEER("имбирное пиво","мл"),
     SODA_COLA("кола","мл"),
     SODA_SPRITE("спрайт","мл"),
+    SODA_FANTA("фанта","мл"),
     SODA_TARRAGON("тархун","мл"),
-    SODA_TONIC("тоник","мл");
+    SODA_TONIC("тоник","мл"),
+    SODA_SIMPLE("простая содовая","мл"),
+    SODA_MINERAL("минералка","мл");
 
     private final String type;
     private final String unit;

@@ -3,7 +3,8 @@ package app.enums.component_types;
 public enum GinType implements ComponentType {
     GIN_LONDONDRY("джин лондонский сухой","мл"),
     GIN_OLDTOM("джин олд том","мл"),
-    GIN_SLOE("джин слоу", "мл");
+    GIN_SLOE("джин слоу", "мл"),
+    GIN_RASPBERRY("джин малиновый", "мл");
 
     private final String type;
     private final String unit;

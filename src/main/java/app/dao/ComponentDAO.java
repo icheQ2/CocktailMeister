@@ -31,7 +31,6 @@ public class ComponentDAO {
     public void update(long id, Component component) {
         Component componentToBeUpdated = show(id);
 
-        componentToBeUpdated.setBrand(component.getBrand());
         componentToBeUpdated.setProduct(component.getProduct());
         componentToBeUpdated.setType(component.getType());
         componentToBeUpdated.setCostPerUnit(component.getCostPerUnit());
