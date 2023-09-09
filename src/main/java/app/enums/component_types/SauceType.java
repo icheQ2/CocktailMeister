@@ -1,17 +1,19 @@
 package app.enums.component_types;
 
 public enum SauceType implements ComponentType {
-    SAUCE_TABASCO("соус табаско","мл"),
-    SAUCE_CHOCO("соус шоколадный","мл"),
-    SAUCE_SOY("соус соевый","мл"),
-    SAUCE_WORCESTER("соус ворчестер","мл");
+    SAUCE_TABASCO("соус табаско","мл", 0),
+    SAUCE_CHOCO("соус шоколадный","мл", 1),
+    SAUCE_SOY("соус соевый","мл", 2),
+    SAUCE_WORCESTER("соус ворчестер","мл", 3);
 
     private final String type;
     private final String unit;
+    private final int ordinal;
 
-    SauceType(String type, String unit) {
+    SauceType(String type, String unit, int ordinal) {
         this.type = type;
         this.unit = unit;
+        this.ordinal = ordinal();
     }
 
     @Override
@@ -21,6 +23,10 @@ public enum SauceType implements ComponentType {
     @Override
     public String getUnit() {
         return unit;
+    }
+    @Override
+    public int getOrdinal() {
+        return ordinal;
     }
 
     public static String getValues() {

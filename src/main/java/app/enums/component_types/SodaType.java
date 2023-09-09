@@ -1,23 +1,25 @@
 package app.enums.component_types;
 
 public enum SodaType implements ComponentType {
-    SODA_LEMONADE("лимонад","мл"),
-    SODA_GINGERALE("имбирный эль","мл"),
-    SODA_GINGERBEER("имбирное пиво","мл"),
-    SODA_COLA("кола","мл"),
-    SODA_SPRITE("спрайт","мл"),
-    SODA_FANTA("фанта","мл"),
-    SODA_TARRAGON("тархун","мл"),
-    SODA_TONIC("тоник","мл"),
-    SODA_SIMPLE("простая содовая","мл"),
-    SODA_MINERAL("минералка","мл");
+    SODA_LEMONADE("лимонад","мл", 0),
+    SODA_GINGERALE("имбирный эль","мл", 1),
+    SODA_GINGERBEER("имбирное пиво","мл", 2),
+    SODA_COLA("кола","мл", 3),
+    SODA_SPRITE("спрайт","мл", 4),
+    SODA_FANTA("фанта","мл", 5),
+    SODA_TARRAGON("тархун","мл", 6),
+    SODA_TONIC("тоник","мл", 7),
+    SODA_SIMPLE("простая содовая","мл", 8),
+    SODA_MINERAL("минералка","мл", 9);
 
     private final String type;
     private final String unit;
+    private final int ordinal;
 
-    SodaType(String type, String unit) {
+    SodaType(String type, String unit, int ordinal) {
         this.type = type;
         this.unit = unit;
+        this.ordinal = ordinal();
     }
 
     @Override
@@ -27,6 +29,10 @@ public enum SodaType implements ComponentType {
     @Override
     public String getUnit() {
         return unit;
+    }
+    @Override
+    public int getOrdinal() {
+        return ordinal;
     }
 
     public static String getValues() {

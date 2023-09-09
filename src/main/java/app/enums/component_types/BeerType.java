@@ -1,20 +1,22 @@
 package app.enums.component_types;
 
 public enum BeerType implements ComponentType {
-    BEER_LIGHT("пиво светлое","мл"),
-    BEER_LIGHTLAGER("пиво лагер светлое","мл"),
-    BEER_DARK("пиво тёмное", "мл"),
-    BEER_DARKLAGER("пиво лагер тёмное", "мл"),
-    BEER_MEXICAN("пиво мексиканское","мл"),
-    BEER_CIDER("сидр","мл"),
-    BEER_STOUT("пиво стаут", "мл");
+    BEER_LIGHT("пиво светлое","мл", 0),
+    BEER_LIGHTLAGER("пиво лагер светлое","мл", 1),
+    BEER_DARK("пиво тёмное", "мл", 2),
+    BEER_DARKLAGER("пиво лагер тёмное", "мл", 3),
+    BEER_MEXICAN("пиво мексиканское","мл", 4),
+    BEER_CIDER("сидр","мл", 5),
+    BEER_STOUT("пиво стаут", "мл", 6);
 
     private final String type;
     private final String unit;
+    private final int ordinal;
 
-    BeerType(String type, String unit) {
+    BeerType(String type, String unit, int ordinal) {
         this.type = type;
         this.unit = unit;
+        this.ordinal = ordinal();
     }
 
     @Override
@@ -24,6 +26,10 @@ public enum BeerType implements ComponentType {
     @Override
     public String getUnit() {
         return unit;
+    }
+    @Override
+    public int getOrdinal() {
+        return ordinal;
     }
 
     public static String getValues() {

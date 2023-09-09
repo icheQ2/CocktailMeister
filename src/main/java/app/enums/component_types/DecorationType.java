@@ -1,16 +1,18 @@
 package app.enums.component_types;
 
 public enum DecorationType implements ComponentType {
-    DECORATION_PINEAPPLELEAF("листик ананаса","шт"),
-    DECORATION_ORANGEPEEL("цедра апельсина","шт"),
-    DECORATION_MINT("листья мяты","шт");
+    DECORATION_PINEAPPLELEAF("листик ананаса","шт", 0),
+    DECORATION_ORANGEPEEL("цедра апельсина","шт", 1),
+    DECORATION_MINT("листья мяты","шт", 2);
 
     private final String type;
     private final String unit;
+    private final int ordinal;
 
-    DecorationType(String type, String unit) {
+    DecorationType(String type, String unit, int ordinal) {
         this.type = type;
         this.unit = unit;
+        this.ordinal = ordinal();
     }
 
     @Override
@@ -20,6 +22,10 @@ public enum DecorationType implements ComponentType {
     @Override
     public String getUnit() {
         return unit;
+    }
+    @Override
+    public int getOrdinal() {
+        return ordinal;
     }
 
     public static String getValues() {

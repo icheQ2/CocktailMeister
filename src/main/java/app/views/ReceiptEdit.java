@@ -50,10 +50,11 @@ public class ReceiptEdit {
                 ConsoleHelper.writeMessage(Type.getValues());
                 ingredientInput = ConsoleHelper.readString();
                 if (!ingredientInput.equals("=")) {
-                    ComponentType type = Type.getSubType(Type.values()[Integer.parseInt(ingredientInput)]);
-                    ConsoleHelper.writeMessage(String.format("Введи объём (%s):", type.getUnit()));
+                    int typeOrdinal = Integer.parseInt(ingredientInput);
+                    ComponentType subType = Type.getSubType(Type.values()[typeOrdinal], -1);
+                    ConsoleHelper.writeMessage(String.format("Введи объём (%s):", subType.getUnit()));
                     volumeInput = ConsoleHelper.readDouble();
-                    ingredientsList.add(type);
+                    ingredientsList.add(subType);
                     volumesList.add(volumeInput);
                 }
             }

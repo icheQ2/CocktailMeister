@@ -3,6 +3,7 @@ package app.views;
 import app.ConsoleHelper;
 import app.User;
 import app.controllers.ComponentController;
+import app.enums.component_types.ComponentType;
 import app.enums.component_types.Type;
 import app.models.Component;
 
@@ -37,18 +38,21 @@ public class ComponentEdit {
         ConsoleHelper.writeMessage(String.format("Выбери новый тип (%s):", Type.getValues()));
         String type = ConsoleHelper.readString();
         if (!type.equals("=")) {
-            component.setType(Type.getSubType(Type.values()[Integer.parseInt(type)]));
+            int typeOrdinal = Integer.parseInt(type);
+            component.setMainType(Type.values()[typeOrdinal]);
+            component.setSubType(Type.getSubType(Type.values()[typeOrdinal], -1));
         }
-        ConsoleHelper.writeMessage(String.format("Введи новую стоимость за %s:", component.getType().getUnit()));
+        ConsoleHelper.writeMessage(String.format("Введи новую стоимость за %s:", component.getMainType().getUnit()));
         String costPerUnit = ConsoleHelper.readString();
         if (!costPerUnit.equals("=")) {
             component.setCostPerUnit(Double.parseDouble(costPerUnit));
         }
-        ConsoleHelper.writeMessage(String.format("Введи новый объём в %s:", component.getType().getUnit()));
+        ConsoleHelper.writeMessage(String.format("Введи новый объём в %s:", component.getMainType().getUnit()));
         String volume = ConsoleHelper.readString();
         if (!volume.equals("=")) {
             component.setCurrentVolume(Double.parseDouble(volume));
         }
+        component.updateTotalCost();
         ConsoleHelper.writeMessage("Введи новое примечание:");
         String comment = ConsoleHelper.readString();
         if (!comment.equals("=")) {

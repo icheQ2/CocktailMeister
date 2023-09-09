@@ -3,33 +3,44 @@ package app.models;
 import app.enums.component_types.ComponentType;
 
 public class Component {
-    private final long userId;
+    private long userId;
     private long id;
     private String product;
-    private ComponentType type;
+    private ComponentType mainType;
+    private ComponentType subType;
     private double costPerUnit;
     private double currentVolume;
     private double totalCost;
     private String comment;
-    private static long counter;
 
-    public Component(long userId, String product, ComponentType type, double costPerUnit, double currentVolume, String comment) {
+    public Component(long userId, String product, ComponentType mainType, ComponentType subType, double costPerUnit, double currentVolume, String comment) {
         this.userId = userId;
-        this.id = counter++;
         this.product = product;
-        this.type = type;
+        this.mainType = mainType;
+        this.subType = subType;
         this.costPerUnit = costPerUnit;
         this.currentVolume = currentVolume;
         this.totalCost = costPerUnit * currentVolume;
         this.comment = comment;
     }
 
+    public Component() {
+    }
+
     public long getUserId() {
         return userId;
     }
 
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getProduct() {
@@ -40,12 +51,20 @@ public class Component {
         this.product = product;
     }
 
-    public ComponentType getType() {
-        return type;
+    public ComponentType getMainType() {
+        return mainType;
     }
 
-    public void setType(ComponentType type) {
-        this.type = type;
+    public void setMainType(ComponentType mainType) {
+        this.mainType = mainType;
+    }
+
+    public ComponentType getSubType() {
+        return subType;
+    }
+
+    public void setSubType(ComponentType subType) {
+        this.subType = subType;
     }
 
     public double getCostPerUnit() {
@@ -68,6 +87,14 @@ public class Component {
         return totalCost;
     }
 
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public void updateTotalCost() {
+        totalCost = costPerUnit * currentVolume;
+    }
+
     public String getComment() {
         return comment;
     }
@@ -78,8 +105,8 @@ public class Component {
 
     @Override
     public String toString() {
-        String typeCap = type.getType().substring(0, 1).toUpperCase() + type.getType().substring(1);
+        String typeCap = subType.getType().substring(0, 1).toUpperCase() + subType.getType().substring(1);
         return String.format("%s %s | %.0f %s | %.2f ₽/%s | %s",
-                typeCap, product, currentVolume, type.getUnit(), costPerUnit, type.getUnit(), comment);
+                typeCap, product, currentVolume, subType.getUnit(), costPerUnit, subType.getUnit(), comment);
     }
 }

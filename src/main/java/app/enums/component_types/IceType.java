@@ -1,15 +1,17 @@
 package app.enums.component_types;
 
 public enum IceType implements ComponentType {
-    ICE_CUBES("лёд кубиками","порц"),
-    ICE_CRUSHED("лёд колотый","порц");
+    ICE_CUBES("лёд кубиками","порц", 0),
+    ICE_CRUSHED("лёд колотый","порц", 1);
 
     private final String type;
     private final String unit;
+    private final int ordinal;
 
-    IceType(String type, String unit) {
+    IceType(String type, String unit, int ordinal) {
         this.type = type;
         this.unit = unit;
+        this.ordinal = ordinal();
     }
 
     @Override
@@ -19,6 +21,10 @@ public enum IceType implements ComponentType {
     @Override
     public String getUnit() {
         return unit;
+    }
+    @Override
+    public int getOrdinal() {
+        return ordinal;
     }
 
     public static String getValues() {

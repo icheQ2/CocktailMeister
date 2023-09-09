@@ -19,10 +19,12 @@ public class ComponentAdd {
         ConsoleHelper.writeMessage("Введи название продукта:");
         String product = ConsoleHelper.readString();
         ConsoleHelper.writeMessage(String.format("Выбери тип (%s):", Type.getValues()));
-        ComponentType type = Type.getSubType(Type.values()[ConsoleHelper.readInt()]);
+        int typeOrdinal = ConsoleHelper.readInt();
+        ComponentType type = Type.values()[typeOrdinal];
+        ComponentType subType = Type.getSubType(Type.values()[typeOrdinal], -1);
         Component usedComponent = null;
         for (Component component : components) {
-            if (component.getProduct().equals(product) && component.getType().equals(type)) {
+            if (component.getProduct().equals(product) && component.getSubType().equals(subType)) {
                 usedComponent = component;
             }
         }
@@ -33,20 +35,21 @@ public class ComponentAdd {
         if (usedComponent == null) {
             ConsoleHelper.writeMessage("Введи примечание:");
             String comment = ConsoleHelper.readString();
-            ComponentController.create(new Component(userId, product, type, cost / volume, volume, comment));
+            ComponentController.create(new Component(userId, product, type, subType, cost / volume, volume, comment));
             ConsoleHelper.writeMessage("");
             ConsoleHelper.writeMessage("Поставили компонент на полку!");
         } else {
             double oldCostPerUnit = usedComponent.getCostPerUnit();
             if (oldCostPerUnit != cost / volume) {
                 ConsoleHelper.writeMessage(String.format("Обновить стоимость (%.2f ₽/%s - Y) или оставить прежней (%.2f ₽/%s - N)?",
-                        cost / volume, usedComponent.getType().getUnit(), oldCostPerUnit, usedComponent.getType().getUnit()));
+                        cost / volume, usedComponent.getSubType().getUnit(), oldCostPerUnit, usedComponent.getSubType().getUnit()));
                 String answer = ConsoleHelper.readString();
                 if (answer.equals("Y")) {
                     usedComponent.setCostPerUnit(cost / volume);
                 }
             }
             usedComponent.setCurrentVolume(usedComponent.getCurrentVolume() + volume);
+            usedComponent.updateTotalCost();
             ConsoleHelper.writeMessage("");
             ConsoleHelper.writeMessage("Дополнили компонент на полке!");
             ComponentController.update(usedComponent.getId(), usedComponent);

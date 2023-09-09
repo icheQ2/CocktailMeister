@@ -1,44 +1,43 @@
 package app.dao;
 
+import app.config.SpringConfig;
 import app.models.Component;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ComponentDAO {
-    private List<Component> components;
 
-    {
-        components = new ArrayList<>();
-    }
+    private final JdbcTemplate jdbcTemplate = SpringConfig.jdbcTemplate();
 
     public List<Component> index() {
-        return components;
+        return jdbcTemplate.query("SELECT * FROM Component", new ComponentMapper());
     }
 
     public List<Component> showAll(long userId) {
-        return components.stream().filter(component -> component.getUserId() == userId).toList();
+        return jdbcTemplate.query("SELECT * FROM Component WHERE userId=?", new Object[]{userId}, new ComponentMapper());
     }
 
     public Component show(long id) {
-        return components.stream().filter(component -> component.getId() == id).findAny().orElse(null);
+        return jdbcTemplate.query("SELECT * FROM Component WHERE id=?", new Object[]{id}, new ComponentMapper())
+                .stream().findAny().orElse(null);
     }
 
     public void save(Component component) {
-        components.add(component);
+        jdbcTemplate.update("INSERT INTO Component VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", component.getUserId(),
+                component.getId(), component.getProduct(), component.getMainType().getOrdinal(),
+                component.getSubType().getOrdinal(), component.getCostPerUnit(), component.getCurrentVolume(),
+                component.getTotalCost(), component.getComment());
     }
 
     public void update(long id, Component component) {
-        Component componentToBeUpdated = show(id);
-
-        componentToBeUpdated.setProduct(component.getProduct());
-        componentToBeUpdated.setType(component.getType());
-        componentToBeUpdated.setCostPerUnit(component.getCostPerUnit());
-        componentToBeUpdated.setCurrentVolume(component.getCurrentVolume());
-        componentToBeUpdated.setComment(component.getComment());
+        jdbcTemplate.update("UPDATE Component SET product=?, mainType=?, subType=?, costPerUnit=?, currentVolume=?, totalCost=?, comment=? WHERE id=?",
+                component.getProduct(), component.getMainType().getOrdinal(), component.getSubType().getOrdinal(),
+                component.getCostPerUnit(), component.getCurrentVolume(), component.getTotalCost(),
+                component.getComment(), id);
     }
 
     public void delete (long id) {
-        components.removeIf(component -> component.getId() == id);
+        jdbcTemplate.update("DELETE FROM Component WHERE id=?", id);
     }
 }

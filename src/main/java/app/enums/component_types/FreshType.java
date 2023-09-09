@@ -1,17 +1,19 @@
 package app.enums.component_types;
 
 public enum FreshType implements ComponentType {
-    FRESH_LIME("фреш лайма","мл"),
-    FRESH_LEMON("фреш лимона","мл"),
-    FRESH_ORANGE("фреш апельсина","мл"),
-    FRESH_GRAPEFRUIT("фреш грейпфрута","мл");
+    FRESH_LIME("фреш лайма","мл", 0),
+    FRESH_LEMON("фреш лимона","мл", 1),
+    FRESH_ORANGE("фреш апельсина","мл", 2),
+    FRESH_GRAPEFRUIT("фреш грейпфрута","мл", 3);
 
     private final String type;
     private final String unit;
+    private final int ordinal;
 
-    FreshType(String type, String unit) {
+    FreshType(String type, String unit, int ordinal) {
         this.type = type;
         this.unit = unit;
+        this.ordinal = ordinal();
     }
 
     @Override
@@ -21,6 +23,10 @@ public enum FreshType implements ComponentType {
     @Override
     public String getUnit() {
         return unit;
+    }
+    @Override
+    public int getOrdinal() {
+        return ordinal;
     }
 
     public static String getValues() {

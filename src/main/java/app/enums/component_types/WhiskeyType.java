@@ -1,17 +1,19 @@
 package app.enums.component_types;
 
 public enum WhiskeyType implements ComponentType {
-    WHISKEY_SCOTCH("виски скотч","мл"),
-    WHISKEY_IRISH("виски ирландский","мл"),
-    WHISKEY_BOURBON("виски бурбон","мл"),
-    WHISKEY_TENNESSEE("виски теннесси","мл");
+    WHISKEY_SCOTCH("виски скотч","мл", 0),
+    WHISKEY_IRISH("виски ирландский","мл", 1),
+    WHISKEY_BOURBON("виски бурбон","мл", 2),
+    WHISKEY_TENNESSEE("виски теннесси","мл", 3);
 
     private final String type;
     private final String unit;
+    private final int ordinal;
 
-    WhiskeyType(String type, String unit) {
+    WhiskeyType(String type, String unit, int ordinal) {
         this.type = type;
         this.unit = unit;
+        this.ordinal = ordinal();
     }
 
     @Override
@@ -21,6 +23,10 @@ public enum WhiskeyType implements ComponentType {
     @Override
     public String getUnit() {
         return unit;
+    }
+    @Override
+    public int getOrdinal() {
+        return ordinal;
     }
 
     public static String getValues() {

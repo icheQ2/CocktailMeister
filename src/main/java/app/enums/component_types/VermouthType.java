@@ -1,18 +1,20 @@
 package app.enums.component_types;
 
 public enum VermouthType implements ComponentType {
-    VERMOUTH_REDDRY("вермут красный сухой","мл"),
-    VERMOUTH_REDSWEET("вермут красный сладкий","мл"),
-    VERMOUTH_WHITEDRY("вермут белый сухой","мл"),
-    VERMOUTH_WHITESWEET("вермут белый сладкий","мл"),
-    VERMOUTH_LILLET("лилле","мл");
+    VERMOUTH_REDDRY("вермут красный сухой","мл", 0),
+    VERMOUTH_REDSWEET("вермут красный сладкий","мл", 1),
+    VERMOUTH_WHITEDRY("вермут белый сухой","мл", 2),
+    VERMOUTH_WHITESWEET("вермут белый сладкий","мл", 3),
+    VERMOUTH_LILLET("лилле","мл", 4);
 
     private final String type;
     private final String unit;
+    private final int ordinal;
 
-    VermouthType(String type, String unit) {
+    VermouthType(String type, String unit, int ordinal) {
         this.type = type;
         this.unit = unit;
+        this.ordinal = ordinal();
     }
 
     @Override
@@ -22,6 +24,10 @@ public enum VermouthType implements ComponentType {
     @Override
     public String getUnit() {
         return unit;
+    }
+    @Override
+    public int getOrdinal() {
+        return ordinal;
     }
 
     public static String getValues() {
