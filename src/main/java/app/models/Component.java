@@ -3,8 +3,8 @@ package app.models;
 import app.enums.component_types.ComponentType;
 
 public class Component {
-    private long userId;
     private long id;
+    private long userId;
     private String product;
     private ComponentType mainType;
     private ComponentType subType;
@@ -27,20 +27,20 @@ public class Component {
     public Component() {
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public String getProduct() {

@@ -17,10 +17,8 @@ public class Receipt {
     private long timesDone;
     private long likes;
     private long dislikes;
-    private static long counter;
 
     public Receipt(String name, List<ComponentType> ingredientsList, List<Double> volumesList, List<PreparationMethod> preparationMethods, String comment) {
-        this.id = counter++;
         this.name = name;
         this.ingredientsList = ingredientsList;
         this.volumesList = volumesList;
@@ -35,6 +33,10 @@ public class Receipt {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -73,6 +75,10 @@ public class Receipt {
         return volume;
     }
 
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
     public void updateVolume() {
         double updatedVolume = 0;
         for (int i = 0; i < ingredientsList.size(); i++) {
@@ -99,12 +105,36 @@ public class Receipt {
         this.comment = comment;
     }
 
+    public long getTimesDone() {
+        return timesDone;
+    }
+
+    public void setTimesDone(long timesDone) {
+        this.timesDone = timesDone;
+    }
+
     public void cocktailDone() {
         timesDone++;
     }
 
+    public long getLikes() {
+        return likes;
+    }
+
+    public void setLikes(long likes) {
+        this.likes = likes;
+    }
+
     public void like() {
         likes++;
+    }
+
+    public long getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(long dislikes) {
+        this.dislikes = dislikes;
     }
 
     public void dislike() {

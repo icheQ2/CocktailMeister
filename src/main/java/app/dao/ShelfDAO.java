@@ -1,37 +1,36 @@
 package app.dao;
 
+import app.config.SpringConfig;
 import app.models.Shelf;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShelfDAO {
-    private List<Shelf> shelfs;
 
-    {
-        shelfs = new ArrayList<>();
-    }
+    private final JdbcTemplate jdbcTemplate = SpringConfig.jdbcTemplate();
 
     public List<Shelf> index() {
-        return shelfs;
+        return jdbcTemplate.query("SELECT * FROM public.\"Shelf\"", new BeanPropertyRowMapper<>(Shelf.class));
     }
 
     public Shelf show(long userId) {
-        return shelfs.stream().filter(shelf -> shelf.getUserId() == userId).findAny().orElse(null);
+        return jdbcTemplate.query("SELECT * FROM public.\"Shelf\" WHERE userId=?", new Object[]{userId}, new BeanPropertyRowMapper<>(Shelf.class))
+                .stream().findAny().orElse(null);
     }
 
     public void save(Shelf shelf) {
-        shelfs.add(shelf);
+        jdbcTemplate.update("INSERT INTO public.\"Shelf\"(userid, username, totalvalue) VALUES(?, ?, ?)",
+                shelf.getUserId(), shelf.getUserName(), shelf.getTotalValue());
     }
 
     public void update(long userId, Shelf shelf) {
-        Shelf shelfToBeUpdated = show(userId);
-
-        shelfToBeUpdated.setUserName(shelf.getUserName());
-        shelfToBeUpdated.setTotalValue(shelf.getTotalValue());
+        jdbcTemplate.update("UPDATE public.\"Shelf\" SET username=?, totalvalue=? WHERE userid=?",
+                shelf.getUserName(), shelf.getTotalValue(), userId);
     }
 
     public void delete (long userId) {
-        shelfs.removeIf(shelf -> shelf.getUserId() == userId);
+        jdbcTemplate.update("DELETE FROM public.\"Shelf\" WHERE userid=?", userId);
     }
 }

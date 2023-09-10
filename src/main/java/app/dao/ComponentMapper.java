@@ -12,19 +12,19 @@ public class ComponentMapper implements RowMapper<Component> {
     @Override
     public Component mapRow(ResultSet resultSet, int i) throws SQLException {
         Component component = new Component();
-        component.setUserId(resultSet.getLong("userId"));
         component.setId(resultSet.getLong("id"));
+        component.setUserId(resultSet.getLong("userid"));
         component.setProduct(resultSet.getString("product"));
-        int type = resultSet.getInt("mainType");
+        int type = resultSet.getInt("maintype");
         component.setMainType(Type.values()[type]);
         try {
-            component.setSubType(Type.getSubType(Type.values()[type], resultSet.getInt("subType")));
+            component.setSubType(Type.getSubType(Type.values()[type], resultSet.getInt("subtype")));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        component.setCostPerUnit(resultSet.getDouble("costPerUnit"));
-        component.setCurrentVolume(resultSet.getDouble("currentVolume"));
-        component.setTotalCost(resultSet.getDouble("totalCost"));
+        component.setCostPerUnit(resultSet.getDouble("costperunit"));
+        component.setCurrentVolume(resultSet.getDouble("currentvolume"));
+        component.setTotalCost(resultSet.getDouble("totalcost"));
         component.setComment(resultSet.getString("comment"));
         return component;
     }
